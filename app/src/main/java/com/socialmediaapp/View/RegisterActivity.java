@@ -1,26 +1,51 @@
 package com.socialmediaapp.View;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.socialmediaapp.R;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.util.Calendar;
+
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+
+    EditText edT_Birthdate;
+    TextView tv_datePickerActions;
+    private int Year, Month, Day;
+    Button btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        onRegister();
+        edT_Birthdate = findViewById(R.id.edT_Birthdate);
+        tv_datePickerActions = findViewById(R.id.tv_datePickerActions);
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(this);
+        tv_datePickerActions.setOnClickListener(this);
     }
-    private void onRegister(){
-        Button btn_back = findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(view -> {
+
+    @Override
+    public void onClick(View view) {
+        if(view == tv_datePickerActions){
+            final Calendar calendar = Calendar.getInstance();
+            Year = calendar.get(Calendar.YEAR);
+            Month = calendar.get(Calendar.MONTH);
+            Day = calendar.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    (date, year, monthOfYear, dayOfMonth) -> edT_Birthdate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year), Year, Month, Day);
+            datePickerDialog.show();
+        }
+        else if(view == btn_back){
             Intent backToLogin = new Intent(this, LoginActivity.class);
             startActivity(backToLogin);
-        });
+        }
     }
 }
