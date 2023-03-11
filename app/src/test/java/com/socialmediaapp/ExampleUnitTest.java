@@ -1,4 +1,4 @@
-package com.socialmediaappp;
+package com.socialmediaapp;
 
 import org.junit.Test;
 

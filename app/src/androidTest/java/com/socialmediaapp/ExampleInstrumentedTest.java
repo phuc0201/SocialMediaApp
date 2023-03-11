@@ -1,4 +1,4 @@
-package com.socialmediaappp;
+package com.socialmediaapp;
 
 import android.content.Context;
 

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.socialmediaappp'
+    namespace 'com.socialmediaapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.socialmediaappp"
+        applicationId "com.socialmediaapp"
         minSdk 23
         targetSdk 33
         versionCode 1
